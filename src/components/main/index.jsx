@@ -13,12 +13,10 @@ const StyledMainSection = styled.section`
 `;
 
 class MainContainer extends React.Component {
-  componentWillMount() {
-    this.props.spinnerShowingAction();
-  }
-
   componentDidMount() {
-    setTimeout(this.props.spinnerHidingAction(), 2000);
+    const { spinnerHidingAction, spinnerShowingAction } = this.props;
+    spinnerShowingAction();
+    setTimeout(spinnerHidingAction, 1000);
   }
 
   render() {
@@ -32,14 +30,6 @@ class MainContainer extends React.Component {
         <p>
           Ссылка на мой <a href="https://github.com/VildanovDenis">гитхаб</a>
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            this.props.spinnerShowingAction();
-          }}
-        >
-          Click me
-        </button>
       </StyledMainSection>
     );
   }

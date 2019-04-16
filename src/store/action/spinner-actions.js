@@ -1,9 +1,7 @@
 export const spinnerShowingAction = () => ({
-  type: "SHOW_SPINNER",
-  payload: true
+  type: "SHOW_SPINNER"
 });
 
 export const spinnerHidingAction = () => ({
-  type: "HIDE_SPINNER",
-  payload: false
+  type: "HIDE_SPINNER"
 });

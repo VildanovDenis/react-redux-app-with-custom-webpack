@@ -5,10 +5,10 @@ const initialStateSpinner = {
 export const spinnerReducer = (state = initialStateSpinner, action) => {
   switch (action.type) {
     case "SHOW_SPINNER": {
-      return { ...state, showSpinner: action.payload };
+      return { ...state, showSpinner: true };
     }
     case "HIDE_SPINNER": {
-      return { ...state, showSpinner: action.payload };
+      return { ...state, showSpinner: false };
     }
     default: {
       return state;
