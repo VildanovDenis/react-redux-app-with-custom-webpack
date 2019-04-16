@@ -21,13 +21,13 @@ class HeaderContainer extends React.Component {
     return (
       <HeaderWrapper>
         <div>
-          <RoutingLink linkText="Главная" to="123" />
-          <RoutingLink linkText="Новости" to="123" />
-          <RoutingLink linkText="Погода" to="123" />
+          <RoutingLink linkText="Главная" to="/" />
+          <RoutingLink linkText="Новости" to="/news" />
+          <RoutingLink linkText="Погода" to="/weather" />
         </div>
         <div>
-          <RoutingLink linkText="Вход" to="123" />
-          <RoutingLink linkText="Регистрация" to="123" />
+          <RoutingLink linkText="Вход" to="/login" />
+          <RoutingLink linkText="Регистрация" to="/registraion" />
         </div>
       </HeaderWrapper>
     );
