@@ -4,7 +4,8 @@
   "description": "Package.json for the 1st webpack config",
   "main": "index.js",
   "dependencies": {
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const element = <div>hello from custom webpack</div>;
+import App from "./components/app.jsx";
 
-const root = document.createElement("main");
-root.id = "root";
-document.documentElement.appendChild(root);
+// const element = <div>hello from custom webpack</div>;
 
-ReactDOM.render(element, document.getElementById("root"));
+// const root = document.createElement("main");
+// root.id = "root";
+// document.documentElement.appendChild(root);
+
+ReactDOM.render(<App />, document.getElementById("root"));
