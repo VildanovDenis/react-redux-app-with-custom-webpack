@@ -1,16 +1,12 @@
-import { CreateStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-function reducer(state, action) {
-    switch (action.type) {
-        case "SHOW_SPINNER" {
-            
-        }
-    }
-}
+import { spinnerReducer } from "./reducer/spinner-reducer.js";
 
-const store = CreateStore(reducer);
+const allReducers = combineReducers({
+  spinnerReducer
+});
 
-const spinnerShowingAction = {
-  type: "SHOW_SPINNER",
-  payload
-};
+export const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
