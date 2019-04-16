@@ -33,10 +33,11 @@ const SpinnerBg = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
 `;
 
-function SpinnerComponent() {
+function SpinnerComponent(borderColor) {
+  const { color } = borderColor;
   return (
     <SpinnerBg>
-      <Spinner borderColor="black" />
+      <Spinner borderColor={color} />
     </SpinnerBg>
   );
 }

@@ -4,7 +4,7 @@ import SpinnerComponent from "./spinner/index.jsx";
 
 class App extends React.Component {
   render() {
-    return <SpinnerComponent />;
+    return <SpinnerComponent color="black" />;
   }
 }
 
