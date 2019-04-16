@@ -1,13 +1,14 @@
 import React from "react";
 
 import SpinnerComponent from "./spinner/index.jsx";
+import "./index.css";
 
 class App extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="app">
         <SpinnerComponent color="black" />
-      </React.Fragment>
+      </div>
     );
   }
 }
