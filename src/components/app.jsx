@@ -8,6 +8,7 @@ import MainContainer from "./main/index.jsx";
 import LoginContainer from "./login/index.jsx";
 import RegistrationContainer from "./registration/index.jsx";
 import NewsContainer from "./news/index.jsx";
+import WeatherContainer from "./weather/index.jsx";
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={MainContainer} />
           <Route path="/news" component={NewsContainer} />
+          <Route path="/weather" component={WeatherContainer} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/registration" component={RegistrationContainer} />
         </Switch>
