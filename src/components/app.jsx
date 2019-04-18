@@ -7,6 +7,7 @@ import HeaderContainer from "./header/index.jsx";
 import MainContainer from "./main/index.jsx";
 import LoginContainer from "./login/index.jsx";
 import RegistrationContainer from "./registration/index.jsx";
+import NewsContainer from "./news/index.jsx";
 
 class App extends React.Component {
   render() {
@@ -16,9 +17,11 @@ class App extends React.Component {
         <HeaderContainer />
         <Switch>
           <Route exact path="/" component={MainContainer} />
+          <Route path="/news" component={NewsContainer} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/registration" component={RegistrationContainer} />
         </Switch>
+        <footer>1234</footer>
         {showSpinner && <SpinnerComponent color="black" />}
       </div>
     );

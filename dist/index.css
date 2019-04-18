@@ -1,10 +1,19 @@
-.app {
+body {
   font-family: "Roboto", sans-serif;
+  font-size: 0px;
+  margin: 0;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  min-height: 100vh;
   max-width: 1200px;
   min-width: 900px;
   padding: 0 20px;
   margin: 0 auto;
+  font-size: 16px;
 }
 ul {
   margin: 0;
@@ -17,6 +26,14 @@ a {
 img {
   width: 100%;
   height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin-top: 0px;
 }
 * {
   box-sizing: border-box;

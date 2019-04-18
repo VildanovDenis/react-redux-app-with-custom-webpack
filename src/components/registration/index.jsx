@@ -6,7 +6,7 @@ import FormItemComponent from "../formItem/index.jsx";
 const StyledForm = styled.form`
   width: 450px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 60px 20px;
 `;
 
 const StyledLoginButton = styled.button`
@@ -41,9 +41,7 @@ class RegistrationContainer extends React.Component {
             id="reg-password"
             placeholder="Пароль"
           />
-          <StyledLoginButton type="button">
-            Регистрация
-          </StyledLoginButton>
+          <StyledLoginButton type="button">Регистрация</StyledLoginButton>
         </StyledForm>
       </section>
     );

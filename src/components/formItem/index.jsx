@@ -9,7 +9,7 @@ const StyledFormItem = styled.div`
 `;
 const StyledLabel = styled.label`
   padding: 2px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 const StyledInput = styled.input`
   padding: 10px;
