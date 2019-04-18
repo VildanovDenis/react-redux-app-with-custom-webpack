@@ -27,7 +27,7 @@ class HeaderContainer extends React.Component {
         </div>
         <div>
           <RoutingLink linkText="Вход" to="/login" />
-          <RoutingLink linkText="Регистрация" to="/registraion" />
+          <RoutingLink linkText="Регистрация" to="/registration" />
         </div>
       </HeaderWrapper>
     );
