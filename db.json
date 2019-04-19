@@ -20,6 +20,54 @@
       "login": "petya12345",
       "password": "Petya12345",
       "isAdmin": false
+    },
+    {
+      "isAdmin": false,
+      "username": "123",
+      "password": "123",
+      "login": "123qwerty",
+      "id": 4
+    },
+    {
+      "isAdmin": false,
+      "username": "12345",
+      "password": "qweasd",
+      "login": "123467",
+      "id": 5
+    },
+    {
+      "isAdmin": false,
+      "username": "12345",
+      "password": "123",
+      "login": "123",
+      "id": 6
+    },
+    {
+      "isAdmin": false,
+      "username": "12345689",
+      "password": "asdzcxzx",
+      "login": "1234",
+      "id": 7
+    },
+    {
+      "isAdmin": false,
+      "username": "12345678",
+      "password": "123456",
+      "login": "1234",
+      "id": 8
+    },
+    {
+      "isAdmin": false,
+      "username": "123",
+      "login": "123",
+      "id": 9
+    },
+    {
+      "isAdmin": false,
+      "username": "3123",
+      "password": "42131",
+      "login": "12312",
+      "id": 10
     }
   ]
 }
