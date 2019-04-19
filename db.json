@@ -10,14 +10,14 @@
     {
       "id": 2,
       "username": "Ivan",
-      "login": "Ivan12345",
+      "login": "ivan12345",
       "password": "Ivan12345",
       "isAdmin": false
     },
     {
       "id": 3,
       "username": "Petya",
-      "login": "Petya12345",
+      "login": "petya12345",
       "password": "Petya12345",
       "isAdmin": false
     }

@@ -9,6 +9,12 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
+const StyledErrorMessage = styled.p`
+  color: red;
+  height: 16px;
+  margin-bottom: 20px;
+`;
+
 const StyledLoginButton = styled.button`
   display: block;
   width: 150px;
@@ -19,7 +25,60 @@ const StyledLoginButton = styled.button`
 `;
 
 class LoginContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showError: false
+    };
+    this.onLoginInputChange = this.onLoginInputChange.bind(this);
+    this.onPasswordInputChange = this.onPasswordInputChange.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onLoginInputChange(e) {
+    const inputValue = e.target.value.toLowerCase();
+    const stateName = e.target.name;
+    this.setState({
+      [stateName]: inputValue
+    });
+  }
+
+  onPasswordInputChange(e) {
+    const inputValue = e.target.value;
+    const stateName = e.target.name;
+    this.setState({
+      [stateName]: inputValue
+    });
+  }
+
+  onButtonClick() {
+    const { Login, Password } = this.state;
+    const URL = `http://localhost:3500/users?login=${Login}&password=${Password}`;
+    fetch(URL, {
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "multipart/form-data"
+      }
+    })
+      .then(res => {
+        const data = res.json();
+        return data;
+      })
+      .then(data => {
+        data.length === "0"
+          ? this.setState({
+              showError: true
+            })
+          : null;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
+    const { showError } = this.state;
     return (
       <React.Fragment>
         <StyledForm>
@@ -28,14 +87,21 @@ class LoginContainer extends React.Component {
             type="text"
             id="login-name"
             placeholder="Логин"
+            onChangeInput={this.onLoginInputChange}
           />
           <FormItemComponent
             name="Password"
             type="password"
             id="login-password"
             placeholder="Пароль"
+            onChangeInput={this.onPasswordInputChange}
           />
-          <StyledLoginButton type="button">Войти</StyledLoginButton>
+          <StyledErrorMessage>
+            {showError && "Неверный логин или пароль"}
+          </StyledErrorMessage>
+          <StyledLoginButton type="button" onClick={this.onButtonClick}>
+            Войти
+          </StyledLoginButton>
         </StyledForm>
       </React.Fragment>
     );
