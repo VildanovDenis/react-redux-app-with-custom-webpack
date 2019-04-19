@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Admin",
+      "login": "admin",
+      "password": "Admin",
+      "isAdmin": true
+    },
+    {
+      "id": 2,
+      "username": "Ivan",
+      "login": "Ivan12345",
+      "password": "Ivan12345",
+      "isAdmin": false
+    },
+    {
+      "id": 3,
+      "username": "Petya",
+      "login": "Petya12345",
+      "password": "Petya12345",
+      "isAdmin": false
+    }
+  ]
+}

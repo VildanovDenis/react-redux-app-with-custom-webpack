@@ -1,0 +1,5 @@
+{
+  "port": 3500,
+  "no-cors": true,
+  "delay": 1500
+}
