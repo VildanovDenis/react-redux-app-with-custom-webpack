@@ -9,8 +9,12 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-function RoutingLink({ linkText, to }) {
-  return <StyledLink to={to}>{linkText}</StyledLink>;
+function RoutingLink({ linkText, to, onClick }) {
+  return (
+    <StyledLink to={to} onClick={onClick}>
+      {linkText}
+    </StyledLink>
+  );
 }
 
 export default RoutingLink;

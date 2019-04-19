@@ -20,9 +20,10 @@ class MainContainer extends React.Component {
   }
 
   render() {
+    const { username, isLogin } = this.props.user;
     return (
       <StyledMainSection>
-        <h3>Привет пользователь!</h3>
+        <h3>Привет, {isLogin ? username : "пользователь"}!</h3>
         <p>
           Ты находишься на главной странице. Проект создан для того, чтобы более
           конкретно ознакомиться с redux'ом и кастомной сборкой webpack'а.
@@ -35,6 +36,12 @@ class MainContainer extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.authReducer
+  };
+};
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -45,6 +52,6 @@ const mapDispatchToProps = dispatch =>
   );
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(MainContainer);
