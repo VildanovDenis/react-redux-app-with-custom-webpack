@@ -1,7 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 import FormItemComponent from "../formItem/index.jsx";
+import { userLoginAction } from "../../store/action/auth-action.js";
+import {
+  spinnerShowingAction,
+  spinnerHidingAction
+} from "../../store/action/spinner-actions.js";
 
 const StyledForm = styled.form`
   width: 450px;
@@ -54,6 +61,7 @@ class LoginContainer extends React.Component {
   onButtonClick() {
     const { Login, Password } = this.state;
     const URL = `http://localhost:3500/users?login=${Login}&password=${Password}`;
+    this.props.spinnerShowingAction();
     fetch(URL, {
       mode: "cors",
       headers: {
@@ -66,11 +74,12 @@ class LoginContainer extends React.Component {
         return data;
       })
       .then(data => {
-        data.length === "0"
+        data.length === 0
           ? this.setState({
               showError: true
             })
-          : null;
+          : this.props.userLoginAction(data[0]);
+        this.props.spinnerHidingAction();
       })
       .catch(error => {
         console.log(error);
@@ -108,4 +117,17 @@ class LoginContainer extends React.Component {
   }
 }
 
-export default LoginContainer;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      userLoginAction: userLoginAction,
+      spinnerShowingAction: spinnerShowingAction,
+      spinnerHidingAction: spinnerHidingAction
+    },
+    dispatch
+  );
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(LoginContainer);

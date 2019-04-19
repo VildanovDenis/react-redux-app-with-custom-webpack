@@ -1,18 +1,18 @@
-const initialStateAuth = {};
-
-export const authReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "LOGIN": {
-            return {...state, action.payload}
-        }
-        case "LOGOUT": {
-            const newState = {};
-            return {newState}
-        }
-        default {
-            return state
-        }
-    }
+const initialStateAuth = {
+  isLogin: false
 };
 
-  
+export const authReducer = (state = initialStateAuth, action) => {
+  switch (action.type) {
+    case "LOGIN": {
+      const newState = { ...action.payload, isLogin: true };
+      return newState;
+    }
+    case "LOGOUT": {
+      return { isLogin: false };
+    }
+    default: {
+      return state;
+    }
+  }
+};

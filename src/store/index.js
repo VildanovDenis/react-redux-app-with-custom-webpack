@@ -1,9 +1,11 @@
 import { createStore, combineReducers } from "redux";
 
 import { spinnerReducer } from "./reducer/spinner-reducer.js";
+import { authReducer } from "./reducer/auth-reducer.js";
 
 const allReducers = combineReducers({
-  spinnerReducer
+  spinnerReducer,
+  authReducer
 });
 
 export const store = createStore(
