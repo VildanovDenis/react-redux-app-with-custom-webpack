@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import CommentContainer from "../newsPopupComments/index.jsx";
+
 const StyledPopupBg = styled.div`
   position: fixed;
   top: 0;
@@ -23,6 +25,7 @@ const StyledPopupWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 600px;
+  margin-bottom: 30px;
   border-radius: 10px;
   background-color: black;
   color: white;
@@ -70,6 +73,7 @@ class NewsPopupContainer extends React.Component {
             </StyledDescriptionWrapper>
             <StyledCloseBtn type="button" />
           </StyledPopupWrapper>
+          <CommentContainer />
         </StyledContentWrapper>
       </StyledPopupBg>
     );
