@@ -10,6 +10,7 @@ import {
 } from "../../store/action/spinner-actions.js";
 
 import NewsItemComponent from "../newsItem/index.jsx";
+import NewsPopupContainer from "../newsPopup/index.jsx";
 
 const StyledNewsWrapper = styled.section`
   width: 100%;
@@ -23,11 +24,26 @@ class NewsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      page: 1,
+      activeArticle: {},
+      showPopupArticle: false
+    };
+
+    this.onArticleClick = this.onArticleClick.bind(this);
+  }
+
+  onArticleClick(article) {
+    this.setState({
+      activeArticle: article,
+      showPopupArticle: true
+    });
   }
 
   componentDidMount() {
-    const URL = "http://localhost:3500/gamesList?_page=1&_limit=5";
+    const { page } = this.state;
+    const URL = `http://localhost:3500/gamesList?_page=${page}&_limit=5`;
+    this.props.spinnerShowingAction();
     this.fetchData(URL);
   }
 
@@ -44,6 +60,7 @@ class NewsContainer extends React.Component {
       })
       .then(dataNews => {
         this.props.getNewsDataAction(dataNews);
+        this.props.spinnerHidingAction();
       })
       .catch(err => {
         console.log(err);
@@ -54,18 +71,19 @@ class NewsContainer extends React.Component {
     const { news } = this.props;
     return (
       <StyledNewsWrapper>
-        {news.length !== 0
-          ? news.map(article => {
-              return (
-                <NewsItemComponent
-                  key={article.id}
-                  img={article.img}
-                  title={article.title}
-                  description={article.description}
-                />
-              );
-            })
-          : null}
+        {news.length !== 0 &&
+          news.map(article => {
+            return (
+              <NewsItemComponent
+                key={article.id}
+                article={article}
+                onClick={this.onArticleClick}
+              />
+            );
+          })}
+        {this.state.showPopupArticle && (
+          <NewsPopupContainer article={this.state.activeArticle} />
+        )}
       </StyledNewsWrapper>
     );
   }

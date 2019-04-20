@@ -8,6 +8,9 @@ const StyledNewsItem = styled.article`
   padding: 20px 10px;
   border-bottom: 1px solid black;
 `;
+const StyledTitle = styled.h3`
+  cursor: pointer;
+`;
 const StyledImageWrapper = styled.div`
   width: 33%;
 `;
@@ -15,7 +18,8 @@ const StyledDescriptionWrapper = styled.div`
   width: 60%;
 `;
 
-function NewsItemComponent({ img, title, description }) {
+function NewsItemComponent({ article, onClick }) {
+  const { img, title, description } = article;
   return (
     <StyledNewsItem>
       <StyledImageWrapper>
@@ -26,7 +30,7 @@ function NewsItemComponent({ img, title, description }) {
         )}
       </StyledImageWrapper>
       <StyledDescriptionWrapper>
-        <h3>{title}</h3>
+        <StyledTitle onClick={() => onClick(article)}>{title}</StyledTitle>
         <p>{description}</p>
       </StyledDescriptionWrapper>
     </StyledNewsItem>
