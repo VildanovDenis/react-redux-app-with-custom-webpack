@@ -9,6 +9,7 @@ import LoginContainer from "./login/index.jsx";
 import RegistrationContainer from "./registration/index.jsx";
 import NewsContainer from "./news/index.jsx";
 import WeatherContainer from "./weather/index.jsx";
+import UserInfoConrainer from "./userInfo/index.jsx";
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class App extends React.Component {
           <Route path="/weather" component={WeatherContainer} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/registration" component={RegistrationContainer} />
+          <Route path="/user" component={UserInfoConrainer} />
         </Switch>
         <footer>1234</footer>
         {showSpinner && <SpinnerComponent color="black" />}

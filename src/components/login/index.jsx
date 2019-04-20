@@ -74,11 +74,16 @@ class LoginContainer extends React.Component {
         return data;
       })
       .then(data => {
-        data.length === 0
-          ? this.setState({
-              showError: true
-            })
-          : this.props.userLoginAction(data[0]);
+        if (data.length === 0) {
+          this.setState({
+            showError: true
+          });
+        } else {
+          this.props.userLoginAction(data[0]);
+          this.setState({
+            showError: false
+          });
+        }
         this.props.spinnerHidingAction();
       })
       .catch(error => {
