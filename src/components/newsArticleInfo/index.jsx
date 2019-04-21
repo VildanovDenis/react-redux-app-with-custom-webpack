@@ -109,6 +109,7 @@ class NewsArticleInfoContainer extends React.Component {
 
   render() {
     const { title, link, description, img } = this.props.activeArticle;
+    const { comments } = this.props;
     if (this.props.activeArticle.title === undefined) {
       return <div />;
     }
@@ -125,11 +126,11 @@ class NewsArticleInfoContainer extends React.Component {
           </StyledDescriptionWrapper>
           <StyledCloseBtn type="button" />
         </StyledArticleWrapper>
-        {/* {comments.map(comment => {
-            return (
-              <CommentContainer key={comment.autorLogin} comment={comment} />
-            );
-          })} */}
+        {comments.map(comment => {
+          return (
+            <CommentContainer key={comment.autorLogin} comment={comment} />
+          );
+        })}
       </StyledContentWrapper>
     );
   }
