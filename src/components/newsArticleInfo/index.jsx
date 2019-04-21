@@ -4,13 +4,17 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { setActiveArticleAction } from "../../store/action/news-action";
+import {
+  spinnerShowingAction,
+  spinnerHidingAction
+} from "../../store/action/spinner-actions.js";
 
 import CommentContainer from "../newsPopupComments/index.jsx";
 
 const StyledContentWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 50px;
+  padding: 30px 0;
   max-height: 100%;
 `;
 const StyledArticleWrapper = styled.div`
@@ -49,11 +53,10 @@ class NewsArticleInfoContainer extends React.Component {
 
   componentDidMount() {
     if (this.props.activeArticle.title === undefined) {
-      const locationPathname = this.props.match.url;
-      console.log(locationPathname);
-      console.log(this.props);
+      const locationPathname = this.props.match.params.routingUrl;
       const URL =
-        "http://localhost:3500/gamesList?routingUrl=" + { locationPathname };
+        "http://localhost:3500/gamesList?routingUrl=" + locationPathname;
+      this.props.spinnerShowingAction();
       this.fetchArticleData(URL);
     }
   }
@@ -67,11 +70,11 @@ class NewsArticleInfoContainer extends React.Component {
       }
     })
       .then(res => {
-        console.log(res);
         return res.json();
       })
       .then(data => {
-        this.props.setActiveArticleAction(data);
+        this.props.setActiveArticleAction(data[0]);
+        this.props.spinnerHidingAction();
       })
       .catch(err => {
         console.log(err);
@@ -79,11 +82,14 @@ class NewsArticleInfoContainer extends React.Component {
   }
 
   render() {
-    // const { title, link, description, img } = this.props.activeArticle;
+    const { title, link, description, img } = this.props.activeArticle;
+    if (this.props.activeArticle.title === undefined) {
+      return <div />;
+    }
     return (
       <StyledContentWrapper>
         <StyledArticleWrapper>
-          {/* <StyledImg src={img} />
+          <StyledImg src={img} />
           <StyledDescriptionWrapper>
             <h3>{title}</h3>
             <p>{description}</p>
@@ -91,7 +97,7 @@ class NewsArticleInfoContainer extends React.Component {
               Подробнее
             </a>
           </StyledDescriptionWrapper>
-          <StyledCloseBtn type="button" /> */}
+          <StyledCloseBtn type="button" />
         </StyledArticleWrapper>
         {/* {comments.map(comment => {
             return (
@@ -112,7 +118,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setActiveArticleAction: setActiveArticleAction
+      setActiveArticleAction: setActiveArticleAction,
+      spinnerShowingAction: spinnerShowingAction,
+      spinnerHidingAction: spinnerHidingAction
     },
     dispatch
   );

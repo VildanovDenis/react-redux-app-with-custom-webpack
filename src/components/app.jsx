@@ -14,7 +14,7 @@ import NewsArticleInfoContainer from "./newsArticleInfo/index.jsx";
 
 class App extends React.Component {
   render() {
-    const { showSpinner, activeArticle } = this.props;
+    const { showSpinner } = this.props;
     return (
       <div className="app">
         <HeaderContainer />
@@ -26,7 +26,6 @@ class App extends React.Component {
           <Route path="/registration" component={RegistrationContainer} />
           <Route path="/user" component={UserInfoConrainer} />
           <Route
-            // path={activeArticle.routingUrl}
             path="/article/:routingUrl"
             component={NewsArticleInfoContainer}
           />
@@ -40,8 +39,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    showSpinner: state.spinnerReducer.showSpinner,
-    activeArticle: state.newsReducer.activeArticle
+    showSpinner: state.spinnerReducer.showSpinner
   };
 };
 
