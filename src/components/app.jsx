@@ -10,10 +10,11 @@ import RegistrationContainer from "./registration/index.jsx";
 import NewsContainer from "./news/index.jsx";
 import WeatherContainer from "./weather/index.jsx";
 import UserInfoConrainer from "./userInfo/index.jsx";
+import NewsArticleInfoContainer from "./newsArticleInfo/index.jsx";
 
 class App extends React.Component {
   render() {
-    const { showSpinner } = this.props;
+    const { showSpinner, activeArticle } = this.props;
     return (
       <div className="app">
         <HeaderContainer />
@@ -24,6 +25,11 @@ class App extends React.Component {
           <Route path="/login" component={LoginContainer} />
           <Route path="/registration" component={RegistrationContainer} />
           <Route path="/user" component={UserInfoConrainer} />
+          <Route
+            // path={activeArticle.routingUrl}
+            path="/article/:routingUrl"
+            component={NewsArticleInfoContainer}
+          />
         </Switch>
         <footer>1234</footer>
         {showSpinner && <SpinnerComponent color="black" />}
@@ -34,7 +40,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    showSpinner: state.spinnerReducer.showSpinner
+    showSpinner: state.spinnerReducer.showSpinner,
+    activeArticle: state.newsReducer.activeArticle
   };
 };
 

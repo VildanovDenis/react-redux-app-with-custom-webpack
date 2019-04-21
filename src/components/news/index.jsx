@@ -3,14 +3,16 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getNewsDataAction } from "../../store/action/news-action.js";
+import {
+  getNewsDataAction,
+  setActiveArticleAction
+} from "../../store/action/news-action.js";
 import {
   spinnerShowingAction,
   spinnerHidingAction
 } from "../../store/action/spinner-actions.js";
 
 import NewsItemComponent from "../newsItem/index.jsx";
-import NewsPopupContainer from "../newsPopup/index.jsx";
 
 const StyledNewsWrapper = styled.section`
   width: 100%;
@@ -25,19 +27,14 @@ class NewsContainer extends React.Component {
     super(props);
 
     this.state = {
-      page: 1,
-      activeArticle: {},
-      showPopupArticle: false
+      page: 1
     };
 
-    this.onArticleClick = this.onArticleClick.bind(this);
+    this.onArticleTitleClick = this.onArticleTitleClick.bind(this);
   }
 
-  onArticleClick(article) {
-    this.setState({
-      activeArticle: article,
-      showPopupArticle: true
-    });
+  onArticleTitleClick(article) {
+    this.props.setActiveArticleAction(article);
   }
 
   componentDidMount() {
@@ -70,21 +67,20 @@ class NewsContainer extends React.Component {
   render() {
     const { news } = this.props;
     return (
-      <StyledNewsWrapper>
-        {news.length !== 0 &&
-          news.map(article => {
-            return (
-              <NewsItemComponent
-                key={article.id}
-                article={article}
-                onClick={this.onArticleClick}
-              />
-            );
-          })}
-        {this.state.showPopupArticle && (
-          <NewsPopupContainer article={this.state.activeArticle} />
-        )}
-      </StyledNewsWrapper>
+      <React.Fragment>
+        <StyledNewsWrapper>
+          {news.length !== 0 &&
+            news.map(article => {
+              return (
+                <NewsItemComponent
+                  key={article.id}
+                  article={article}
+                  onClick={this.onArticleTitleClick}
+                />
+              );
+            })}
+        </StyledNewsWrapper>
+      </React.Fragment>
     );
   }
 }
@@ -98,6 +94,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      setActiveArticleAction: setActiveArticleAction,
       getNewsDataAction: getNewsDataAction,
       spinnerShowingAction: spinnerShowingAction,
       spinnerHidingAction: spinnerHidingAction

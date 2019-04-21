@@ -1,5 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { setActiveArticleAction } from "../../store/action/news-action.js";
 
 const StyledNewsItem = styled.article`
   display: flex;
@@ -19,7 +24,7 @@ const StyledDescriptionWrapper = styled.div`
 `;
 
 function NewsItemComponent({ article, onClick }) {
-  const { img, title, description } = article;
+  const { img, title, description, routingUrl } = article;
   return (
     <StyledNewsItem>
       <StyledImageWrapper>
@@ -30,7 +35,16 @@ function NewsItemComponent({ article, onClick }) {
         )}
       </StyledImageWrapper>
       <StyledDescriptionWrapper>
-        <StyledTitle onClick={() => onClick(article)}>{title}</StyledTitle>
+        <StyledTitle>
+          <Link
+            to={`/article/${routingUrl}`}
+            onClick={_ => {
+              onClick(article);
+            }}
+          >
+            {title}
+          </Link>
+        </StyledTitle>
         <p>{description}</p>
       </StyledDescriptionWrapper>
     </StyledNewsItem>

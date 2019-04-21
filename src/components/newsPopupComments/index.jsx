@@ -3,15 +3,22 @@ import styled from "styled-components";
 
 const StyledCommentWrapper = styled.div`
   width: 600px;
-  padding: 10px;
-  margin: 0 auto 10px;
+  padding: 20px;
+  margin: 0 auto 15px;
   color: white;
+  background: black;
+  border-radius: 10px;
 `;
 const StyledCommentTextarea = styled.textarea`
   width: 100%;
-  min-height: 30px;
+  min-width: 100%;
+  max-width: 100%;
+  height: 30px;
   padding: 0px;
+  margin-bottom: 5px;
   border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
   background-color: transparent;
   color: white;
 `;
@@ -30,21 +37,55 @@ class CommentContainer extends React.Component {
 
     this.state = {
       editComment: false,
-      commentDescription: ""
+      comment: ""
     };
+
+    this.onEditButtonClick = this.onEditButtonClick.bind(this);
+    this.onTextAreaChange = this.onTextAreaChange.bind(this);
+  }
+
+  onTextAreaChange(e) {
+    const newComment = e.target.value;
+    this.setState({
+      comment: newComment
+    });
+  }
+
+  onEditButtonClick() {
+    this.setState({
+      editComment: true
+    });
+  }
+
+  componentDidMount() {
+    const { comment } = this.props.comment;
+
+    this.setState({
+      comment: comment
+    });
   }
 
   render() {
     return (
       <StyledCommentWrapper>
-        <h4>Autor</h4>
+        <h4>{this.props.comment.autorLogin}:</h4>
         {this.state.editComment ? (
-          <StyledCommentTextarea value={this.state.commentDescription} />
+          <StyledCommentTextarea
+            value={this.state.comment}
+            onChange={this.onTextAreaChange}
+          />
         ) : (
-          <StyledCommentTextarea as="p">Comment</StyledCommentTextarea>
+          <StyledCommentTextarea as="p">
+            {this.state.comment}
+          </StyledCommentTextarea>
         )}
         <div>
-          <StyledBtn type="button">Редактировать</StyledBtn>
+          <StyledBtn
+            type="button"
+            onClick={this.state.editComment ? null : this.onEditButtonClick}
+          >
+            {this.state.editComment ? "Сохранить" : "Редактировать"}
+          </StyledBtn>
           <StyledBtn type="button">Удалить</StyledBtn>
         </div>
       </StyledCommentWrapper>

@@ -4,3 +4,10 @@ export const getNewsDataAction = payload => {
     payload
   };
 };
+
+export const setActiveArticleAction = payload => {
+  return {
+    type: "SET_ARTICLE",
+    payload
+  };
+};
