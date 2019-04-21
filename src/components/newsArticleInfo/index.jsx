@@ -55,16 +55,19 @@ class NewsArticleInfoContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.activeArticle.title === undefined) {
-      const locationPathname = this.props.match.params.routingUrl;
-      const URL =
-        "http://localhost:3500/gamesList?routingUrl=" + locationPathname;
+    const locationPathname = this.props.match.params.routingUrl;
+    const URL =
+      "http://localhost:3500/gamesList?routingUrl=" + locationPathname;
+    const commentsURL =
+      "http://localhost:3500/commentsToGamesList?game=" + locationPathname;
 
-      const commentsURL =
-        "http://localhost:3500/commentsToGamesList?game=" + locationPathname;
+    if (this.props.activeArticle.title === undefined) {
+      this.props.spinnerShowingAction();
+      this.fetchArticleData(URL);
+      this.fetchCommentsData(commentsURL);
+    } else {
       this.props.spinnerShowingAction();
       this.fetchCommentsData(commentsURL);
-      this.fetchArticleData(URL);
     }
   }
 
@@ -81,7 +84,6 @@ class NewsArticleInfoContainer extends React.Component {
       })
       .then(data => {
         this.props.setActiveArticleAction(data[0]);
-        this.props.spinnerHidingAction();
       })
       .catch(err => {
         console.log(err);
@@ -101,6 +103,7 @@ class NewsArticleInfoContainer extends React.Component {
       })
       .then(data => {
         this.props.getArticleCommentsAction(data);
+        this.props.spinnerHidingAction();
       })
       .catch(err => {
         console.log(err);
@@ -127,9 +130,7 @@ class NewsArticleInfoContainer extends React.Component {
           <StyledCloseBtn type="button" />
         </StyledArticleWrapper>
         {comments.map(comment => {
-          return (
-            <CommentContainer key={comment.autorLogin} comment={comment} />
-          );
+          return <CommentContainer key={comment.id} comment={comment} />;
         })}
       </StyledContentWrapper>
     );
