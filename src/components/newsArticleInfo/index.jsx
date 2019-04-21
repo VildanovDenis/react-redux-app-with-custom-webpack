@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { setActiveArticleAction } from "../../store/action/news-action";
+import {
+  setActiveArticleAction,
+  getArticleCommentsAction
+} from "../../store/action/news-action";
 import {
   spinnerShowingAction,
   spinnerHidingAction
@@ -56,7 +59,11 @@ class NewsArticleInfoContainer extends React.Component {
       const locationPathname = this.props.match.params.routingUrl;
       const URL =
         "http://localhost:3500/gamesList?routingUrl=" + locationPathname;
+
+      const commentsURL =
+        "http://localhost:3500/commentsToGamesList?game=" + locationPathname;
       this.props.spinnerShowingAction();
+      this.fetchCommentsData(commentsURL);
       this.fetchArticleData(URL);
     }
   }
@@ -75,6 +82,25 @@ class NewsArticleInfoContainer extends React.Component {
       .then(data => {
         this.props.setActiveArticleAction(data[0]);
         this.props.spinnerHidingAction();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  fetchCommentsData(URL) {
+    fetch(URL, {
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "multipart/form-data"
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        this.props.getArticleCommentsAction(data);
       })
       .catch(err => {
         console.log(err);
@@ -111,7 +137,8 @@ class NewsArticleInfoContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    activeArticle: state.newsReducer.activeArticle
+    activeArticle: state.newsReducer.activeArticle,
+    comments: state.newsReducer.comments
   };
 };
 
@@ -119,6 +146,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       setActiveArticleAction: setActiveArticleAction,
+      getArticleCommentsAction: getArticleCommentsAction,
       spinnerShowingAction: spinnerShowingAction,
       spinnerHidingAction: spinnerHidingAction
     },

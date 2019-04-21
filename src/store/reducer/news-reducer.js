@@ -1,6 +1,7 @@
 const initialStateNews = {
   news: [],
-  activeArticle: {}
+  activeArticle: {},
+  comments: []
 };
 
 export const newsReducer = (state = initialStateNews, action) => {
@@ -12,6 +13,10 @@ export const newsReducer = (state = initialStateNews, action) => {
     case "SET_ARTICLE": {
       const { payload: article } = action;
       return { ...state, activeArticle: article };
+    }
+    case "GET_COMMENTS": {
+      const { payload: comments } = action;
+      return { ...state, comments: comments };
     }
     default: {
       return state;

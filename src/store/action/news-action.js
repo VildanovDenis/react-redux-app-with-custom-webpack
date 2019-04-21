@@ -11,3 +11,10 @@ export const setActiveArticleAction = payload => {
     payload
   };
 };
+
+export const getArticleCommentsAction = payload => {
+  return {
+    type: "GET_COMMENTS",
+    payload
+  };
+};
