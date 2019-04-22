@@ -12,7 +12,7 @@ import {
   spinnerHidingAction
 } from "../../store/action/spinner-actions.js";
 
-import CommentContainer from "../newsPopupComments/index.jsx";
+import CommentContainer from "../newsArticleComments/index.jsx";
 
 const StyledContentWrapper = styled.div`
   width: 100%;
