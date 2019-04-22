@@ -1,4 +1,4 @@
-Проект сделан с использованием [react](https://reactjs.org/), [redux](https://redux.js.org/), [react-router](https://reacttraining.com/react-router/web/guides/quick-start), [styled](https://www.styled-components.com/), [json-server](https://github.com/typicode/json-server), а так же компайлера [babel](https://babeljs.io/)
+Проект сделан с использованием [react](https://reactjs.org/), [react-redux](https://redux.js.org/), [react-router](https://reacttraining.com/react-router/web/guides/quick-start), [styled](https://www.styled-components.com/), [json-server](https://github.com/typicode/json-server), а так же компайлера [babel](https://babeljs.io/)
 
 ## Для того, чтобы начать
 
