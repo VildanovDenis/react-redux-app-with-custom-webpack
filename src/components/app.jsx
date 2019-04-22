@@ -11,6 +11,7 @@ import NewsContainer from "./news/index.jsx";
 import WeatherContainer from "./weather/index.jsx";
 import UserInfoConrainer from "./userInfo/index.jsx";
 import NewsArticleInfoContainer from "./newsArticleInfo/index.jsx";
+import FooterComponent from "./footer/index.jsx";
 
 class App extends React.Component {
   render() {
@@ -30,7 +31,7 @@ class App extends React.Component {
             component={NewsArticleInfoContainer}
           />
         </Switch>
-        <footer>1234</footer>
+        <FooterComponent />
         {showSpinner && <SpinnerComponent color="black" />}
       </div>
     );
