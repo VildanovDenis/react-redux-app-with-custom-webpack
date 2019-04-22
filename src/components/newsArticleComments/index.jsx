@@ -86,8 +86,7 @@ class CommentContainer extends React.Component {
         console.log(res);
         this.props.updateComments;
       })
-      .then(res => {
-        console.log(res);
+      .then(() => {
         this.props.onDeleteClick();
       })
       .catch(err => console.log(err));

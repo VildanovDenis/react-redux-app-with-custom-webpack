@@ -6,11 +6,19 @@ const rotate = keyframes`
   	transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(720deg);
+  }
+`;
+const rotateReverse = keyframes`
+	0% {
+  	transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 `;
 const Spinner = styled.div`
-  position: absolute;
+  // position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -22,20 +30,27 @@ const Spinner = styled.div`
   border-bottom: 6px solid transparent;
   border-radius: 50%;
   background-color: transparent;
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotate} 1.8s linear infinite;
 `;
 const SpinnerBg = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-top: 6px solid ${props => props.borderColor};
+  border-bottom: 6px solid ${props => props.borderColor};
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  animation: ${rotateReverse} 2s linear infinite;
 `;
 
 function SpinnerComponent({ borderColor }) {
   return (
-    <SpinnerBg>
+    <SpinnerBg borderColor={borderColor}>
       <Spinner borderColor={borderColor} />
     </SpinnerBg>
   );

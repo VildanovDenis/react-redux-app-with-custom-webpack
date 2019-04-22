@@ -160,6 +160,13 @@
       "comment": "Что-то сложновато играть."
     },
     {
+      "id": 2,
+      "comment": "Крутая игра, но не очень реалистична!",
+      "game": "fortnite",
+      "autorLogin": "petya12345",
+      "autorId": 3
+    },
+    {
       "id": 4,
       "game": "fortnite",
       "autorLogin": "ivan12345",
@@ -171,7 +178,7 @@
       "game": "fortnite",
       "autorLogin": "admin",
       "autorId": 1,
-      "comment": "Что-то сложновато играть."
+      "comment": "Согласен с Иваном"
     }
   ],
   "weather": [
