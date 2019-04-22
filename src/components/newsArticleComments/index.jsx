@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { updateArticleCommentAction } from "../../store/action/news-action";
 
 const StyledCommentWrapper = styled.div`
   width: 600px;
@@ -79,7 +82,14 @@ class CommentContainer extends React.Component {
       "http://localhost:3500/commentsToGamesList/" + this.props.comment.id;
 
     fetch(URL, { method: "DELETE" })
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        this.props.updateComments;
+      })
+      .then(res => {
+        console.log(res);
+        this.props.onDeleteClick();
+      })
       .catch(err => console.log(err));
   }
 
@@ -101,7 +111,7 @@ class CommentContainer extends React.Component {
       },
       body: JSON.stringify(comment)
     })
-      .then(res => console.log(res))
+      .then(res => this.props.updateArticleCommentAction(res.json()))
       .then(() => {
         this.setState({
           editComment: false
@@ -111,6 +121,10 @@ class CommentContainer extends React.Component {
   }
 
   render() {
+    const canEdit =
+      this.props.user.isAdmin ||
+      this.props.user.login === this.props.comment.autorLogin;
+
     return (
       <StyledCommentWrapper>
         <h4>{this.props.comment.autorLogin}:</h4>
@@ -126,24 +140,23 @@ class CommentContainer extends React.Component {
         )}
         {this.props.user.isLogin && (
           <div>
-            {this.props.user.isAdmin ||
-              (this.props.user.login === this.props.comment.autorLogin && (
-                <React.Fragment>
-                  <StyledBtn
-                    type="button"
-                    onClick={
-                      this.state.editComment
-                        ? this.onSaveEditedCommentClick
-                        : this.onEditButtonClick
-                    }
-                  >
-                    {this.state.editComment ? "Сохранить" : "Редактировать"}
-                  </StyledBtn>
-                  <StyledBtn type="button" onClick={this.onDeleteCommentClick}>
-                    Удалить
-                  </StyledBtn>
-                </React.Fragment>
-              ))}
+            {canEdit && (
+              <React.Fragment>
+                <StyledBtn
+                  type="button"
+                  onClick={
+                    this.state.editComment
+                      ? this.onSaveEditedCommentClick
+                      : this.onEditButtonClick
+                  }
+                >
+                  {this.state.editComment ? "Сохранить" : "Редактировать"}
+                </StyledBtn>
+                <StyledBtn type="button" onClick={this.onDeleteCommentClick}>
+                  Удалить
+                </StyledBtn>
+              </React.Fragment>
+            )}
           </div>
         )}
       </StyledCommentWrapper>
@@ -157,7 +170,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      updateArticleCommentAction: updateArticleCommentAction
+    },
+    dispatch
+  );
+
 export default connect(
   mapStateToProps,
-  undefined
+  mapDispatchToProps
 )(CommentContainer);

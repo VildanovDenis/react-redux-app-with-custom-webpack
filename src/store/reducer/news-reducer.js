@@ -18,6 +18,10 @@ export const newsReducer = (state = initialStateNews, action) => {
       const { payload: comments } = action;
       return { ...state, comments: comments };
     }
+    case "UPDATE_COMMENTS": {
+      const { payload: comments } = action;
+      return { ...state, comments: { ...comments, comment } };
+    }
     default: {
       return state;
     }

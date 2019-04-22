@@ -153,11 +153,25 @@
   ],
   "commentsToGamesList": [
     {
+      "id": 1,
+      "game": "fortnite",
+      "autorLogin": "denis",
+      "autorId": 4,
+      "comment": "Интересная игра, понравилась."
+    },
+    {
       "id": 3,
       "game": "dota2",
       "autorLogin": "ivan12345",
       "autorId": 2,
       "comment": "Что-то сложновато играть."
+    },
+    {
+      "id": 2,
+      "comment": "Крутая игра, но не очень реалистична.",
+      "game": "fortnite",
+      "autorLogin": "petya12345",
+      "autorId": 3
     },
     {
       "id": 4,

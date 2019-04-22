@@ -52,6 +52,8 @@ const StyledCloseBtn = styled.button`
 class NewsArticleInfoContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onDeleteCommentBtnClick = this.onDeleteCommentBtnClick.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +71,13 @@ class NewsArticleInfoContainer extends React.Component {
       this.props.spinnerShowingAction();
       this.fetchCommentsData(commentsURL);
     }
+  }
+
+  onDeleteCommentBtnClick() {
+    const locationPathname = this.props.match.params.routingUrl;
+    const commentsURL =
+      "http://localhost:3500/commentsToGamesList?game=" + locationPathname;
+    this.fetchCommentsData(commentsURL);
   }
 
   fetchArticleData(URL) {
@@ -130,7 +139,13 @@ class NewsArticleInfoContainer extends React.Component {
           <StyledCloseBtn type="button" />
         </StyledArticleWrapper>
         {comments.map(comment => {
-          return <CommentContainer key={comment.id} comment={comment} />;
+          return (
+            <CommentContainer
+              key={comment.id}
+              comment={comment}
+              onDeleteClick={this.onDeleteCommentBtnClick}
+            />
+          );
         })}
       </StyledContentWrapper>
     );

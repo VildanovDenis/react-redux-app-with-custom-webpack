@@ -18,3 +18,10 @@ export const getArticleCommentsAction = payload => {
     payload
   };
 };
+
+export const updateArticleCommentAction = payload => {
+  return {
+    type: "UPDATE_COMMENT",
+    payload
+  };
+};
