@@ -13,6 +13,7 @@ import {
 } from "../../store/action/spinner-actions.js";
 
 import CommentContainer from "../newsArticleComments/index.jsx";
+import AddCommentContainer from "../newsArticleAddComment/index.jsx";
 
 const StyledContentWrapper = styled.div`
   width: 100%;
@@ -53,7 +54,9 @@ class NewsArticleInfoContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onDeleteCommentBtnClick = this.onDeleteCommentBtnClick.bind(this);
+    this.onDeleteOrAddCommentBtnClick = this.onDeleteOrAddCommentBtnClick.bind(
+      this
+    );
   }
 
   componentDidMount() {
@@ -73,7 +76,7 @@ class NewsArticleInfoContainer extends React.Component {
     }
   }
 
-  onDeleteCommentBtnClick() {
+  onDeleteOrAddCommentBtnClick() {
     const locationPathname = this.props.match.params.routingUrl;
     const commentsURL =
       "http://localhost:3500/commentsToGamesList?game=" + locationPathname;
@@ -143,10 +146,13 @@ class NewsArticleInfoContainer extends React.Component {
             <CommentContainer
               key={comment.id}
               comment={comment}
-              onDeleteClick={this.onDeleteCommentBtnClick}
+              onDeleteClick={this.onDeleteOrAddCommentBtnClick}
             />
           );
         })}
+        <AddCommentContainer
+          onAddCommentClick={this.onDeleteOrAddCommentBtnClick}
+        />
       </StyledContentWrapper>
     );
   }

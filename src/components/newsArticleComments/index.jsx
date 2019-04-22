@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 
 import { updateArticleCommentAction } from "../../store/action/news-action";
 
-const StyledCommentWrapper = styled.div`
+export const StyledCommentWrapper = styled.div`
   width: 600px;
   padding: 20px;
   margin: 0 auto 15px;
@@ -13,11 +13,11 @@ const StyledCommentWrapper = styled.div`
   background: black;
   border-radius: 10px;
 `;
-const StyledCommentTextarea = styled.textarea`
+export const StyledCommentTextarea = styled.textarea`
   width: 100%;
   min-width: 100%;
   max-width: 100%;
-  height: 30px;
+  min-height: 30px;
   padding: 0px;
   margin-bottom: 5px;
   border: none;
@@ -26,7 +26,7 @@ const StyledCommentTextarea = styled.textarea`
   background-color: transparent;
   color: white;
 `;
-const StyledBtn = styled.button`
+export const StyledBtn = styled.button`
   display: inline-block;
   margin-right: 10px;
   padding: 0;

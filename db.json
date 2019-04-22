@@ -27,6 +27,13 @@
       "password": "Vildanov",
       "login": "denis",
       "id": 4
+    },
+    {
+      "isAdmin": false,
+      "username": "1",
+      "password": "1",
+      "login": "1",
+      "id": 5
     }
   ],
   "gamesList": [
@@ -179,6 +186,27 @@
       "autorLogin": "admin",
       "autorId": 1,
       "comment": "Согласен с Иваном"
+    },
+    {
+      "game": "fortnite",
+      "autorLogin": "denis",
+      "autorId": 4,
+      "comment": "12345",
+      "id": 6
+    },
+    {
+      "game": "fortnite",
+      "autorLogin": "1",
+      "autorId": 5,
+      "comment": "Привет, тестим комментарии!",
+      "id": 7
+    },
+    {
+      "game": "fortnite",
+      "autorLogin": "1",
+      "autorId": 5,
+      "comment": "1234",
+      "id": 8
     }
   ],
   "weather": [
