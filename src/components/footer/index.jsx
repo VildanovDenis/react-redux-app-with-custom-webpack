@@ -22,6 +22,10 @@ const StyledLink = styled.a`
 
 const usedPacks = [
   {
+    name: "babel",
+    url: "https://babeljs.io/"
+  },
+  {
     name: "react",
     url: "https://reactjs.org/"
   },
@@ -34,16 +38,16 @@ const usedPacks = [
     url: "https://reacttraining.com/react-router/web/guides/quick-start"
   },
   {
+    name: "formik",
+    url: "https://jaredpalmer.com/formik/"
+  },
+  {
     name: "styled-components",
     url: "https://www.styled-components.com/"
   },
   {
     name: "json-server",
     url: "https://github.com/typicode/json-server"
-  },
-  {
-    name: "babel",
-    url: "https://babeljs.io/"
   }
 ];
 
